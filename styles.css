@@ -456,7 +456,9 @@ body {
     transition: transform 0.3s ease;
 }
 
+
 .portfolio-box:hover {
+    width:100%;
     transform: translateY(-10px);
 }
 
