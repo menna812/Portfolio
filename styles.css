@@ -465,8 +465,18 @@ body {
 .portfolio-box img {
     width: 100%;
     height: 250px;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
+    background: #fff;
+    padding: 0.6rem 0;
     transition: transform 0.3s ease;
+}
+
+.portfolio-box img.portfolio-logo {
+    object-fit: contain;
+    object-position: center;
+    background: #fff;
+    padding: 1rem 0;
 }
 
 .portfolio-box:hover img {
