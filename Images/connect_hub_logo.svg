@@ -1,0 +1,83 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for modern look -->
+    <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="200" cy="200" r="180" fill="url(#mainGradient)" opacity="0.1"/>
+  
+  <!-- Main hub circle (center) -->
+  <circle cx="200" cy="200" r="45" fill="url(#mainGradient)" filter="url(#shadow)"/>
+  
+  <!-- Connection nodes (representing users/connections) -->
+  <!-- Top node -->
+  <circle cx="200" cy="100" r="25" fill="url(#accentGradient)" filter="url(#shadow)"/>
+  <line x1="200" y1="125" x2="200" y2="155" stroke="url(#mainGradient)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Right node -->
+  <circle cx="280" cy="160" r="25" fill="url(#accentGradient)" filter="url(#shadow)"/>
+  <line x1="260" y1="175" x2="232" y2="188" stroke="url(#mainGradient)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Bottom right node -->
+  <circle cx="280" cy="240" r="25" fill="url(#accentGradient)" filter="url(#shadow)"/>
+  <line x1="260" y1="225" x2="232" y2="212" stroke="url(#mainGradient)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Bottom node -->
+  <circle cx="200" cy="300" r="25" fill="url(#accentGradient)" filter="url(#shadow)"/>
+  <line x1="200" y1="275" x2="200" y2="245" stroke="url(#mainGradient)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Bottom left node -->
+  <circle cx="120" cy="240" r="25" fill="url(#accentGradient)" filter="url(#shadow)"/>
+  <line x1="140" y1="225" x2="168" y2="212" stroke="url(#mainGradient)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Left node -->
+  <circle cx="120" cy="160" r="25" fill="url(#accentGradient)" filter="url(#shadow)"/>
+  <line x1="140" y1="175" x2="168" y2="188" stroke="url(#mainGradient)" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Communication icons in center hub -->
+  <!-- Message icon -->
+  <path d="M 190 195 L 210 195 L 210 205 L 205 210 L 195 210 L 190 205 Z" fill="white" opacity="0.9"/>
+  <circle cx="195" cy="199" r="1.5" fill="white"/>
+  <circle cx="200" cy="199" r="1.5" fill="white"/>
+  <circle cx="205" cy="199" r="1.5" fill="white"/>
+  
+  <!-- Small connection dots on nodes -->
+  <circle cx="200" cy="100" r="8" fill="white" opacity="0.3"/>
+  <circle cx="280" cy="160" r="8" fill="white" opacity="0.3"/>
+  <circle cx="280" cy="240" r="8" fill="white" opacity="0.3"/>
+  <circle cx="200" cy="300" r="8" fill="white" opacity="0.3"/>
+  <circle cx="120" cy="240" r="8" fill="white" opacity="0.3"/>
+  <circle cx="120" cy="160" r="8" fill="white" opacity="0.3"/>
+  
+  <!-- Text -->
+  <text x="200" y="360" font-family="'Segoe UI', 'Arial', sans-serif" font-size="42" font-weight="700" fill="url(#mainGradient)" text-anchor="middle">
+    Connect Hub
+  </text>
+  
+  <!-- Subtle tagline -->
+  <text x="200" y="380" font-family="'Segoe UI', 'Arial', sans-serif" font-size="14" font-weight="400" fill="#666" text-anchor="middle" opacity="0.7">
+    Share • Connect • Communicate
+  </text>
+</svg>

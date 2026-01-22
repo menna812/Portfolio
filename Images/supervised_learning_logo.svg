@@ -1,0 +1,149 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Neural network gradient -->
+    <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Data point gradients -->
+    <linearGradient id="class1Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="class2Gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="accuracyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Shadow -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background grid (representing feature space) -->
+  <g opacity="0.1" stroke="#667eea" stroke-width="1">
+    <line x1="80" y1="80" x2="80" y2="280"/>
+    <line x1="120" y1="80" x2="120" y2="280"/>
+    <line x1="160" y1="80" x2="160" y2="280"/>
+    <line x1="200" y1="80" x2="200" y2="280"/>
+    <line x1="240" y1="80" x2="240" y2="280"/>
+    <line x1="280" y1="80" x2="280" y2="280"/>
+    <line x1="320" y1="80" x2="320" y2="280"/>
+    
+    <line x1="80" y1="80" x2="320" y2="80"/>
+    <line x1="80" y1="120" x2="320" y2="120"/>
+    <line x1="80" y1="160" x2="320" y2="160"/>
+    <line x1="80" y1="200" x2="320" y2="200"/>
+    <line x1="80" y1="240" x2="320" y2="240"/>
+    <line x1="80" y1="280" x2="320" y2="280"/>
+  </g>
+  
+  <!-- Decision boundary (curved line separating classes) -->
+  <path d="M 80 220 Q 150 180 200 160 T 320 140" 
+        stroke="url(#neuralGradient)" 
+        stroke-width="4" 
+        fill="none" 
+        stroke-dasharray="8,4"
+        filter="url(#glow)"/>
+  
+  <!-- Labeled training data points - Class 1 (circles - above boundary) -->
+  <g filter="url(#shadow)">
+    <circle cx="110" cy="100" r="10" fill="url(#class1Gradient)" stroke="#fff" stroke-width="2"/>
+    <circle cx="140" cy="120" r="10" fill="url(#class1Gradient)" stroke="#fff" stroke-width="2"/>
+    <circle cx="180" cy="110" r="10" fill="url(#class1Gradient)" stroke="#fff" stroke-width="2"/>
+    <circle cx="220" cy="95" r="10" fill="url(#class1Gradient)" stroke="#fff" stroke-width="2"/>
+    <circle cx="260" cy="100" r="10" fill="url(#class1Gradient)" stroke="#fff" stroke-width="2"/>
+    <circle cx="290" cy="85" r="10" fill="url(#class1Gradient)" stroke="#fff" stroke-width="2"/>
+  </g>
+  
+  <!-- Labeled training data points - Class 2 (squares - below boundary) -->
+  <g filter="url(#shadow)">
+    <rect x="85" y="235" width="20" height="20" rx="2" fill="url(#class2Gradient)" stroke="#fff" stroke-width="2"/>
+    <rect x="125" y="210" width="20" height="20" rx="2" fill="url(#class2Gradient)" stroke="#fff" stroke-width="2"/>
+    <rect x="165" y="225" width="20" height="20" rx="2" fill="url(#class2Gradient)" stroke="#fff" stroke-width="2"/>
+    <rect x="205" y="240" width="20" height="20" rx="2" fill="url(#class2Gradient)" stroke="#fff" stroke-width="2"/>
+    <rect x="245" y="220" width="20" height="20" rx="2" fill="url(#class2Gradient)" stroke="#fff" stroke-width="2"/>
+    <rect x="285" y="250" width="20" height="20" rx="2" fill="url(#class2Gradient)" stroke="#fff" stroke-width="2"/>
+  </g>
+  
+  <!-- Label arrows/tags (showing supervised aspect) -->
+  <g opacity="0.6">
+    <!-- Arrow pointing to circle -->
+    <path d="M 75 95 L 95 98" stroke="url(#class1Gradient)" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+    <text x="45" y="100" font-family="'Courier New', monospace" font-size="12" fill="url(#class1Gradient)" font-weight="600">y=0</text>
+    
+    <!-- Arrow pointing to square -->
+    <path d="M 75 250 L 80 245" stroke="url(#class2Gradient)" stroke-width="2" fill="none" marker-end="url(#arrowPink)"/>
+    <text x="45" y="255" font-family="'Courier New', monospace" font-size="12" fill="url(#class2Gradient)" font-weight="600">y=1</text>
+  </g>
+  
+  <!-- Neural network icon (small, in corner) -->
+  <g transform="translate(290, 30)" opacity="0.7">
+    <!-- Input layer -->
+    <circle cx="0" cy="0" r="4" fill="url(#neuralGradient)"/>
+    <circle cx="0" cy="15" r="4" fill="url(#neuralGradient)"/>
+    
+    <!-- Hidden layer -->
+    <circle cx="20" cy="-5" r="4" fill="url(#accuracyGradient)"/>
+    <circle cx="20" cy="7.5" r="4" fill="url(#accuracyGradient)"/>
+    <circle cx="20" cy="20" r="4" fill="url(#accuracyGradient)"/>
+    
+    <!-- Output layer -->
+    <circle cx="40" cy="7.5" r="4" fill="url(#class2Gradient)"/>
+    
+    <!-- Connections -->
+    <line x1="0" y1="0" x2="20" y2="-5" stroke="url(#neuralGradient)" stroke-width="1" opacity="0.5"/>
+    <line x1="0" y1="0" x2="20" y2="7.5" stroke="url(#neuralGradient)" stroke-width="1" opacity="0.5"/>
+    <line x1="0" y1="15" x2="20" y2="7.5" stroke="url(#neuralGradient)" stroke-width="1" opacity="0.5"/>
+    <line x1="0" y1="15" x2="20" y2="20" stroke="url(#neuralGradient)" stroke-width="1" opacity="0.5"/>
+    <line x1="20" y1="-5" x2="40" y2="7.5" stroke="url(#neuralGradient)" stroke-width="1" opacity="0.5"/>
+    <line x1="20" y1="7.5" x2="40" y2="7.5" stroke="url(#neuralGradient)" stroke-width="1" opacity="0.5"/>
+    <line x1="20" y1="20" x2="40" y2="7.5" stroke="url(#neuralGradient)" stroke-width="1" opacity="0.5"/>
+  </g>
+  
+  <!-- Accuracy indicator -->
+  <g transform="translate(30, 30)">
+    <rect x="0" y="0" width="60" height="25" rx="12" fill="url(#accuracyGradient)" opacity="0.9" filter="url(#shadow)"/>
+    <text x="30" y="17" font-family="'Segoe UI', sans-serif" font-size="12" fill="#fff" text-anchor="middle" font-weight="700">98.5%</text>
+  </g>
+  
+  <!-- Text -->
+  <text x="200" y="330" font-family="'Segoe UI', 'Arial', sans-serif" font-size="40" font-weight="700" fill="url(#neuralGradient)" text-anchor="middle">
+    Supervised Learning
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="200" y="355" font-family="'Courier New', monospace" font-size="14" font-weight="500" fill="#666" text-anchor="middle" opacity="0.8">
+    Classification • Regression • Prediction
+  </text>
+  
+  <!-- Small ML equation -->
+  <text x="200" y="375" font-family="'Courier New', monospace" font-size="11" fill="#999" text-anchor="middle" opacity="0.6">
+    f(x) = ŷ | min L(y, ŷ)
+  </text>
+</svg>
